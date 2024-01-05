@@ -21,7 +21,7 @@ app = FastAPI()
 logger.info("Loading model")
 model = tf.saved_model.load('/model')
 
-@app.get("/health"], status_code=200)
+@app.get("/health", status_code=200)
 def health():
     """ health check to ensure HTTP server is ready to handle 
         prediction requests
@@ -36,7 +36,7 @@ async def predict(request: Request):
     inputs = []
     for instance in instances:
         inputs.append(instance['bytes_inputs']['b64'])
-       
+
     # unfinished, returns Internal Server error
     #outputs = model.predict(inputs)
     #logger.info(f"Outputs {outputs}")
